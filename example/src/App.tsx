@@ -1,18 +1,29 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-pretty-qrcode';
+import QRCode from 'react-native-pretty-qrcode';
+// import QRCode from '../../src/index';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <QRCode
+        errorCorrection="LOW"
+        size={400}
+        value={'I Love u Isabela'}
+        backgroundColor="#d9d9d9"
+        foregroundColor="#000000"
+        shape="merged"
+        quietZone={1}
+        logo="https://img.freepik.com/free-photo/photo-delicious-hamburger-isolated-white-background_125540-3378.jpg"
+        logoSize={65}
+        logoMargin={4}
+        // useCustomEyes
+        // squareRadius={10}
+        // gradient={{ start: '#6a1b9a', end: '#53ffcb' }}
+      />
     </View>
   );
 }
