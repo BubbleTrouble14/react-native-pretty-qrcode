@@ -76,9 +76,69 @@ export const cutOutImage = (
 
   for (let y = Math.max(0, startY); y < Math.min(endY, matrixSize); y++) {
     for (let x = Math.max(0, startX); x < Math.min(endX, matrixSize); x++) {
-      newMatrix[y][x] = false;
+      newMatrix[y]![x] = false;
     }
   }
 
   return newMatrix; // Return newMatrix instead of the original matrix
 };
+
+interface EyePosition {
+  x: number;
+  y: number;
+}
+
+interface EyeInfo {
+  topLeft: EyePosition;
+  topRight: EyePosition;
+  bottomLeft: EyePosition;
+  size: number;
+}
+
+export function calculateEyePositions(
+  matrix: boolean[][],
+  qrSize: number
+): EyeInfo {
+  const matrixSize = matrix.length;
+  const moduleSize = qrSize / matrixSize;
+
+  // In a QR code, the eye pattern is always 7x7 modules
+  const eyeSize = 7 * moduleSize;
+
+  // Find the eye positions in the matrix
+  const topLeft = findEyePosition(matrix, 0, 0);
+  const topRight = findEyePosition(matrix, matrixSize - 7, 0);
+  const bottomLeft = findEyePosition(matrix, 0, matrixSize - 7);
+
+  return {
+    topLeft: {
+      x: topLeft.x * moduleSize,
+      y: topLeft.y * moduleSize,
+    },
+    topRight: {
+      x: topRight.x * moduleSize,
+      y: topRight.y * moduleSize,
+    },
+    bottomLeft: {
+      x: bottomLeft.x * moduleSize,
+      y: bottomLeft.y * moduleSize,
+    },
+    size: eyeSize,
+  };
+}
+
+function findEyePosition(
+  matrix: boolean[][],
+  startX: number,
+  startY: number
+): EyePosition {
+  // The eye pattern starts with a 7x7 square of true values
+  for (let y = startY; y < startY + 7; y++) {
+    for (let x = startX; x < startX + 7; x++) {
+      if (!matrix[y]![x]) {
+        return { x: startX, y: startY };
+      }
+    }
+  }
+  return { x: startX, y: startY };
+}

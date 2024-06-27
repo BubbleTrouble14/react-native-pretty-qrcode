@@ -3,6 +3,19 @@ import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import QRCode from 'react-native-pretty-qrcode';
 // import QRCode from '../../src/index';
+import SkiaQrCode from 'react-native-qrcode-skia';
+import {
+  Blend,
+  BlurMask,
+  CornerPathEffect,
+  DashPathEffect,
+  DiscretePathEffect,
+  Paint,
+  RadialGradient,
+  SweepGradient,
+  Turbulence,
+  vec,
+} from '@shopify/react-native-skia';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -10,20 +23,22 @@ export default function App() {
   return (
     <View style={styles.container}>
       <QRCode
-        errorCorrection="LOW"
+        errorCorrection="HIGH"
         size={400}
-        value={'I Love u Isabela'}
-        backgroundColor="#d9d9d9"
+        value={'I love React Native!'}
+        // backgroundColor="#d9d9d9"
         foregroundColor="#000000"
-        shape="merged"
-        quietZone={1}
+        quietZone={20}
         logo="https://img.freepik.com/free-photo/photo-delicious-hamburger-isolated-white-background_125540-3378.jpg"
-        logoSize={65}
+        logoWidth={140}
+        logoHeight={20}
         logoMargin={4}
+        pattern="rounded"
         // useCustomEyes
         // squareRadius={10}
-        // gradient={{ start: '#6a1b9a', end: '#53ffcb' }}
+        // gradient={{ start: '#6a1b9a', end: '#ff53f6' }}
       />
+      {/* <SkiaQrCode value={'dfsdfsdf'} pathStyle="stroke" size={400}></SkiaQrCode> */}
     </View>
   );
 }
