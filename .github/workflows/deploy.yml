@@ -16,13 +16,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18' # Updated to a more recent Node version
 
       - name: Install Dependencies
         run: |
           yarn install
           cd example
           yarn install
+
+      - name: Install @expo/metro-runtime
+        run: |
+          cd example
+          npx expo install @expo/metro-runtime
 
       - name: Build
         run: |
@@ -33,4 +38,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./example/web-build
+          publish_dir: ./example/dist # Changed from web-build to dist
