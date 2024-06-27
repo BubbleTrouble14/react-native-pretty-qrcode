@@ -2,7 +2,6 @@
   "expo": {
     "name": "example",
     "slug": "example",
-    "homepage": "https://github.com/BubbleTrouble14/react-native-pretty-qrcode/",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
