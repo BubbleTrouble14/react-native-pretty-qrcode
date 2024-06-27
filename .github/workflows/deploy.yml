@@ -3,18 +3,18 @@ name: Deploy Example to GitHub Pages
 on:
   push:
     branches:
-      - main  # Set a branch name to trigger deployment
+      - main # Set a branch name to trigger deployment
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install Dependencies
         run: |
@@ -29,3 +29,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           yarn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import QRCode from 'react-native-pretty-qrcode';
 
 const App: React.FC = () => {

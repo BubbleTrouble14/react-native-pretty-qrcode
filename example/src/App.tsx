@@ -1,21 +1,8 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import QRCode from 'react-native-pretty-qrcode';
 // import QRCode from '../../src/index';
-import SkiaQrCode from 'react-native-qrcode-skia';
-import {
-  Blend,
-  BlurMask,
-  CornerPathEffect,
-  DashPathEffect,
-  DiscretePathEffect,
-  Paint,
-  RadialGradient,
-  SweepGradient,
-  Turbulence,
-  vec,
-} from '@shopify/react-native-skia';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();

@@ -1,7 +1,7 @@
 import qrcodegen from '@ribpay/qr-code-generator';
 import React from 'react';
 import type { ViewProps } from 'react-native';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import Svg, {
   Defs,
   G,
@@ -9,7 +9,6 @@ import Svg, {
   Path,
   Rect,
   Stop,
-  Image as SvgImage,
   Text,
 } from 'react-native-svg';
 import Eye from './Eye';
